@@ -472,6 +472,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -486,7 +489,15 @@
 <h4 id="显示所有镜像"><a href="#显示所有镜像" class="headerlink" title="显示所有镜像"></a>显示所有镜像</h4><blockquote>
 <p>docker images</p>
 </blockquote>
-<h4 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker pull rabbitmq:management</span><br><span class="line">docker run -d --name &quot;myrabbitmq&quot; -p 5672:5672 -p 15672:15672 rabbitmq:management</span><br><span class="line">docker run -d --name &quot;jt_rabbitmq&quot; -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER&#x3D;admin -e RABBITMQ_DEFAULT_PASS&#x3D;886291 rabbitmq:management</span><br><span class="line"></span><br><span class="line">docker pull redis</span><br><span class="line">docker run -d --name &quot;redis01&quot; -p 6379:6379 redis:latest --requirepass &quot;1234qwer&quot; --appendonly yes</span><br><span class="line"></span><br><span class="line">docker pull mysql:5.7</span><br><span class="line">docker run -d --name &quot;jt_mysql&quot; -p 3308:3306  -e MYSQL_ROOT_PASSWORD&#x3D;886291 mysql:5.7</span><br></pre></td></tr></table></figure>
+<h4 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h4><pre class="line-numbers language-none"><code class="language-none">docker pull rabbitmq:management
+docker run -d --name &quot;myrabbitmq&quot; -p 5672:5672 -p 15672:15672 rabbitmq:management
+docker run -d --name &quot;jt_rabbitmq&quot; -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER&#x3D;admin -e RABBITMQ_DEFAULT_PASS&#x3D;886291 rabbitmq:management
+
+docker pull redis
+docker run -d --name &quot;redis01&quot; -p 6379:6379 redis:latest --requirepass &quot;1234qwer&quot; --appendonly yes
+
+docker pull mysql:5.7
+docker run -d --name &quot;jt_mysql&quot; -p 3308:3306  -e MYSQL_ROOT_PASSWORD&#x3D;886291 mysql:5.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>参数讲解: </p>
 <ol>
 <li>docker run - 创建一个容器</li>
