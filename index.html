@@ -620,10 +620,13 @@ docker images
                         <div class="summary block-with-text">
                             
                                 TCP连接TIME_WAIT过多的解决方法查看当前系统下所有连接状态的数
-netstat -n|awk ‘/^tcp/{++S[$NF]}END{for (key in S) print key,S[key]}’
 ss -s 
 
-调整内核参
+调整内核参数
+
+编辑文件/etc/sysctl.conf，加入以下内容
+
+net.ipv4.tcp_syncookies = 1net.ipv4.tc
                             
                         </div>
                         <div class="publish-info">

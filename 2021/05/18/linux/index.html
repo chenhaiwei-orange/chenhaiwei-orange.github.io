@@ -481,7 +481,6 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="TCP连接TIME-WAIT过多的解决方法"><a href="#TCP连接TIME-WAIT过多的解决方法" class="headerlink" title="TCP连接TIME_WAIT过多的解决方法"></a>TCP连接TIME_WAIT过多的解决方法</h2><h3 id="查看当前系统下所有连接状态的数"><a href="#查看当前系统下所有连接状态的数" class="headerlink" title="查看当前系统下所有连接状态的数"></a>查看当前系统下所有连接状态的数</h3><blockquote>
-<p>netstat -n|awk ‘/^tcp/{++S[$NF]}END{for (key in S) print key,S[key]}’</p>
 <p>ss -s </p>
 </blockquote>
 <h3 id="调整内核参数"><a href="#调整内核参数" class="headerlink" title="调整内核参数"></a>调整内核参数</h3><blockquote>
