@@ -535,6 +535,32 @@
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
+<h3 id="springboot项目使用logstash"><a href="#springboot项目使用logstash" class="headerlink" title="springboot项目使用logstash"></a>springboot项目使用logstash</h3><blockquote>
+<ol>
+<li><p>pom.xml增加依赖 </p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>logstash日志收集<span class="token operator">--</span><span class="token operator">></span>
+<span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">></span></span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">></span></span>net<span class="token punctuation">.</span>logstash<span class="token punctuation">.</span>logback<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">></span></span>logstash<span class="token operator">-</span>logback<span class="token operator">-</span>encoder<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">></span></span><span class="token number">5.3</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>日志文件logback.xml增加 </p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 输出到logstash <span class="token operator">--</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>appender name<span class="token operator">=</span><span class="token string">"logstash"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"net.logstash.logback.appender.LogstashTcpSocketAppender"</span><span class="token operator">></span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>destination<span class="token punctuation">></span></span><span class="token number">139.155</span><span class="token number">.33</span><span class="token number">.58</span><span class="token operator">:</span><span class="token number">9600</span><span class="token operator">&lt;</span><span class="token operator">/</span>destination<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 日志输出编码 <span class="token operator">--</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>encoder charset<span class="token operator">=</span><span class="token string">"UTF-8"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"net.logstash.logback.encoder.LogstashEncoder"</span><span class="token operator">></span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>customFields<span class="token punctuation">></span></span><span class="token punctuation">&#123;</span><span class="token string">"appname"</span><span class="token operator">:</span><span class="token string">"parking-app-server"</span><span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>customFields<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>encoder<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>appender<span class="token operator">></span>
+      
+ <span class="token operator">&lt;</span>root level<span class="token operator">=</span><span class="token string">"ERROR"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>appender<span class="token operator">-</span>ref ref<span class="token operator">=</span><span class="token string">"logstash"</span><span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>root<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ol>
+</blockquote>
 
                 
             </div>
