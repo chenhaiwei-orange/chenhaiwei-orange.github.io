@@ -480,16 +480,53 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="TCP连接TIME-WAIT过多的解决方法"><a href="#TCP连接TIME-WAIT过多的解决方法" class="headerlink" title="TCP连接TIME_WAIT过多的解决方法"></a>TCP连接TIME_WAIT过多的解决方法</h2><h3 id="查看当前系统下所有连接状态的数"><a href="#查看当前系统下所有连接状态的数" class="headerlink" title="查看当前系统下所有连接状态的数"></a>查看当前系统下所有连接状态的数</h3><blockquote>
+                <h2 id="TCP连接TIME-WAIT过多的解决方法"><a href="#TCP连接TIME-WAIT过多的解决方法" class="headerlink" title="TCP连接TIME_WAIT过多的解决方法"></a>TCP连接TIME_WAIT过多的解决方法</h2><h3 id="1-查看当前系统下所有连接状态的数"><a href="#1-查看当前系统下所有连接状态的数" class="headerlink" title="1. 查看当前系统下所有连接状态的数"></a>1. 查看当前系统下所有连接状态的数</h3><blockquote>
 <p>ss -s </p>
 </blockquote>
-<h3 id="调整内核参数"><a href="#调整内核参数" class="headerlink" title="调整内核参数"></a>调整内核参数</h3><blockquote>
+<h3 id="2-调整内核参数"><a href="#2-调整内核参数" class="headerlink" title="2. 调整内核参数"></a>2. 调整内核参数</h3><blockquote>
 <ol>
 <li>编辑文件/etc/sysctl.conf，加入以下内容</li>
 </ol>
 <p>net.ipv4.tcp_syncookies = 1<br>net.ipv4.tcp_tw_reuse = 1<br>net.ipv4.tcp_tw_recycle = 1<br>net.ipv4.tcp_fin_timeout = 30</p>
 <ol start="2">
 <li>/执行 /sbin/sysctl -p 让参数生效</li>
+</ol>
+</blockquote>
+<h2 id="centos7安装node-exporter"><a href="#centos7安装node-exporter" class="headerlink" title="centos7安装node_exporter"></a>centos7安装node_exporter</h2><h3 id="1-创建新用户"><a href="#1-创建新用户" class="headerlink" title="1.  创建新用户"></a>1.  创建新用户</h3><blockquote>
+<p>useradd -m -s /bin/bash prometheus</p>
+</blockquote>
+<h3 id="2-安装node-exporter"><a href="#2-安装node-exporter" class="headerlink" title="2. 安装node_exporter"></a>2. 安装node_exporter</h3><blockquote>
+<ol>
+<li><p>进入到/home/prometheus目录</p>
+</li>
+<li><p>wget <a target="_blank" rel="noopener" href="https://github.com/prometheus/node_exporter/releases/download/v0.17.0/node_exporter-0.17.0.linux-amd64.tar.gz">https://github.com/prometheus/node_exporter/releases/download/v0.17.0/node_exporter-0.17.0.linux-amd64.tar.gz</a></p>
+</li>
+<li><p>解压缩node_exporter并将目录重命名为“node_exporter”</p>
+</li>
+<li><p>su - root</p>
+</li>
+<li><p>为node_exporter创建新的服务文件: vim  /etc/systemd/system/node_exporter.service</p>
+</li>
+<li><pre><code class="java">[Unit]
+Description=Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=prometheus
+ExecStart=/home/prometheus/node_exporter/node_exporter --web.listen-address=:9100
+
+[Install]
+WantedBy=default.target</code></pre>
+</li>
+<li><p>systemctl daemon-reload</p>
+</li>
+<li><p>systemctl start node_exporter</p>
+</li>
+<li><p>systemctl enable node_exporter</p>
+</li>
+<li><p>netstat -plntu |grep 9100</p>
+</li>
 </ol>
 </blockquote>
 

@@ -420,14 +420,14 @@
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                TCP连接TIME_WAIT过多的解决方法查看当前系统下所有连接状态的数
+                                TCP连接TIME_WAIT过多的解决方法1. 查看当前系统下所有连接状态的数
 ss -s 
 
-调整内核参数
+2. 调整内核参数
 
 编辑文件/etc/sysctl.conf，加入以下内容
 
-net.ipv4.tcp_syncookies = 1net.ipv4.tc
+net.ipv4.tcp_syncookies = 1net.i
                             
                         </div>
                         <div class="publish-info">
