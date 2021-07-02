@@ -529,7 +529,28 @@ WantedBy=default.target</code></pre>
 </li>
 </ol>
 </blockquote>
-
+<h2 id="linux版本-nginx"><a href="#linux版本-nginx" class="headerlink" title="linux版本 nginx"></a>linux版本 nginx</h2><h3 id="1-安装ssl模块"><a href="#1-安装ssl模块" class="headerlink" title="1. 安装ssl模块"></a>1. 安装ssl模块</h3><blockquote>
+<ol>
+<li>./configure –prefix=/usr/local/nginx –with-http_stub_status_module –with-http_ssl_module</li>
+<li>make</li>
+</ol>
+</blockquote>
+<h3 id="2-启动"><a href="#2-启动" class="headerlink" title="2. 启动"></a>2. 启动</h3><blockquote>
+<p>./nginx -c /usr/local/nginx/conf/nginx.conf</p>
+</blockquote>
+<h3 id="3-停止"><a href="#3-停止" class="headerlink" title="3. 停止"></a>3. 停止</h3><blockquote>
+<p>./nginx -s stop 或者./nginx -s quit</p>
+</blockquote>
+<h3 id="4-重新加载"><a href="#4-重新加载" class="headerlink" title="4. 重新加载"></a>4. 重新加载</h3><blockquote>
+<p>./nginx -s reload</p>
+</blockquote>
+<h2 id="windows版本-nginx"><a href="#windows版本-nginx" class="headerlink" title="windows版本 nginx"></a>windows版本 nginx</h2><h3 id="1-启动"><a href="#1-启动" class="headerlink" title="1. 启动"></a>1. 启动</h3><blockquote>
+<p>start nginx</p>
+</blockquote>
+<h3 id="2-停止"><a href="#2-停止" class="headerlink" title="2. 停止"></a>2. 停止</h3><blockquote>
+<p>nginx -s stop 或者nginx -s quit</p>
+</blockquote>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
                 
             </div>
             <hr/>
