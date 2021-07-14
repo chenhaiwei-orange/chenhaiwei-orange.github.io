@@ -480,7 +480,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="docker基本命令"><a href="#docker基本命令" class="headerlink" title="docker基本命令"></a>docker基本命令</h3><h4 id="搜索镜像"><a href="#搜索镜像" class="headerlink" title="搜索镜像"></a>搜索镜像</h4><blockquote>
+                <h3 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h3><h4 id="搜索镜像"><a href="#搜索镜像" class="headerlink" title="搜索镜像"></a>搜索镜像</h4><blockquote>
 <p>docker search xxx</p>
 </blockquote>
 <h4 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h4><blockquote>
@@ -490,14 +490,13 @@
 <p>docker images</p>
 </blockquote>
 <h4 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h4><pre class="line-numbers language-none"><code class="language-none">docker pull rabbitmq:management
-docker run -d --name &quot;myrabbitmq&quot; -p 5672:5672 -p 15672:15672 rabbitmq:management
 docker run -d --name &quot;jt_rabbitmq&quot; -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER&#x3D;admin -e RABBITMQ_DEFAULT_PASS&#x3D;886291 rabbitmq:management
 
 docker pull redis
 docker run -d --name &quot;redis01&quot; -p 6379:6379 redis:latest --requirepass &quot;1234qwer&quot; --appendonly yes
 
 docker pull mysql:5.7
-docker run -d --name &quot;jt_mysql&quot; -p 3308:3306  -e MYSQL_ROOT_PASSWORD&#x3D;886291 mysql:5.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+docker run -d --name &quot;jt_mysql&quot; -p 3308:3306  -e MYSQL_ROOT_PASSWORD&#x3D;886291 mysql:5.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>参数讲解: </p>
 <ol>
 <li>docker run - 创建一个容器</li>
@@ -539,7 +538,50 @@ docker run -d --name &quot;jt_mysql&quot; -p 3308:3306  -e MYSQL_ROOT_PASSWORD&#
 <h4 id="启动docker服务"><a href="#启动docker服务" class="headerlink" title="启动docker服务"></a>启动docker服务</h4><blockquote>
 <p>systemctl start docker</p>
 </blockquote>
+<h3 id="docker-compose命令"><a href="#docker-compose命令" class="headerlink" title="docker-compose命令"></a>docker-compose命令</h3><h4 id="一键安装基础软件"><a href="#一键安装基础软件" class="headerlink" title="一键安装基础软件"></a>一键安装基础软件</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3'</span>
 
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mysql</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> mysql<span class="token punctuation">:</span><span class="token number">5.7</span>
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> tj_mysql
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">privileged</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 3306<span class="token punctuation">:</span><span class="token number">3306</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span> 
+      <span class="token punctuation">-</span> MYSQL_ROOT_PASSWORD=886291
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /data/tj_mysql/log<span class="token punctuation">:</span>/var/log/mysql
+      <span class="token punctuation">-</span> /data/tj_mysql/data<span class="token punctuation">:</span>/var/lib/mysql
+      <span class="token punctuation">-</span> /data/tj_mysql/conf<span class="token punctuation">:</span>/etc/mysql
+  
+  <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> tj_redis
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">privileged</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 6379<span class="token punctuation">:</span><span class="token number">6379</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /data/tj_redis/data<span class="token punctuation">:</span>/data
+      <span class="token punctuation">-</span> /data/tj_redis/conf/redis.conf<span class="token punctuation">:</span>/usr/local/etc/redis/redis.conf
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> redis<span class="token punctuation">-</span>server /usr/local/etc/redis/redis.conf
+
+  <span class="token key atrule">rabbitmq</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> rabbitmq<span class="token punctuation">:</span>management
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> tj_rabbitmq
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">privileged</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> RABBITMQ_DEFAULT_USER=admin
+      <span class="token punctuation">-</span> RABBITMQ_DEFAULT_PASS=886291
+    <span class="token key atrule">hostname</span><span class="token punctuation">:</span> rabbitmq1
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 5672<span class="token punctuation">:</span><span class="token number">5672</span>
+      <span class="token punctuation">-</span> 15672<span class="token punctuation">:</span><span class="token number">15672</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /data/tj_rabbitmq/rabbitmq<span class="token punctuation">:</span>/var/lib/rabbitmq
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
