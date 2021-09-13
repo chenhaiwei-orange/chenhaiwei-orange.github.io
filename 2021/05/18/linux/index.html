@@ -517,43 +517,57 @@ User=prometheus
 ExecStart=/home/prometheus/node_exporter/node_exporter --web.listen-address=:9100
 
 [Install]
-WantedBy=default.target</code></pre>
+WantedBy=default.target
+<pre class="line-numbers language-none"><code class="language-none">
+7. systemctl daemon-reload
+
+8. systemctl start node_exporter
+
+9. systemctl enable node_exporter
+
+10. netstat -plntu |grep 9100
+
+## linux版本 nginx
+
+### 1. 安装ssl模块
+
+1. .&#x2F;configure --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx --with-http_stub_status_module --with-http_ssl_module
+2. make
+
+### 2. 启动
+
+.&#x2F;nginx -c &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf
+
+### 3. 停止
+
+.&#x2F;nginx -s stop 或者.&#x2F;nginx -s quit
+
+### 4. 重新加载
+
+.&#x2F;nginx -s reload
+
+## windows版本 nginx
+
+###  1. 启动
+
+start nginx
+
+### 2. 停止
+
+.&#x2F;nginx -s stop 或者.&#x2F;nginx -s quit
+
+## linux校对服务器时间
+
+1. 第一步安装NTP校时包：yum install ntp
+
+2. 第二步校时命令：ntpdate cn.pool.ntp.org
+
+3. 定时同步服务器时间：
+
+4. &#96;&#96;&#96;shell
+   crontab -e
+   30 21 * * * &#x2F;sbin&#x2F;ntpdate cn.pool.ntp.org #每晚的21:30同步一次时间<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></code></pre>
 </li>
-<li><p>systemctl daemon-reload</p>
-</li>
-<li><p>systemctl start node_exporter</p>
-</li>
-<li><p>systemctl enable node_exporter</p>
-</li>
-<li><p>netstat -plntu |grep 9100</p>
-</li>
-</ol>
-</blockquote>
-<h2 id="linux版本-nginx"><a href="#linux版本-nginx" class="headerlink" title="linux版本 nginx"></a>linux版本 nginx</h2><h3 id="1-安装ssl模块"><a href="#1-安装ssl模块" class="headerlink" title="1. 安装ssl模块"></a>1. 安装ssl模块</h3><blockquote>
-<ol>
-<li>./configure –prefix=/usr/local/nginx –with-http_stub_status_module –with-http_ssl_module</li>
-<li>make</li>
-</ol>
-</blockquote>
-<h3 id="2-启动"><a href="#2-启动" class="headerlink" title="2. 启动"></a>2. 启动</h3><blockquote>
-<p>./nginx -c /usr/local/nginx/conf/nginx.conf</p>
-</blockquote>
-<h3 id="3-停止"><a href="#3-停止" class="headerlink" title="3. 停止"></a>3. 停止</h3><blockquote>
-<p>./nginx -s stop 或者./nginx -s quit</p>
-</blockquote>
-<h3 id="4-重新加载"><a href="#4-重新加载" class="headerlink" title="4. 重新加载"></a>4. 重新加载</h3><blockquote>
-<p>./nginx -s reload</p>
-</blockquote>
-<h2 id="windows版本-nginx"><a href="#windows版本-nginx" class="headerlink" title="windows版本 nginx"></a>windows版本 nginx</h2><h3 id="1-启动"><a href="#1-启动" class="headerlink" title="1. 启动"></a>1. 启动</h3><blockquote>
-<p>start nginx</p>
-</blockquote>
-<h3 id="2-停止"><a href="#2-停止" class="headerlink" title="2. 停止"></a>2. 停止</h3><blockquote>
-<p>./nginx -s stop 或者./nginx -s quit</p>
-</blockquote>
-<h2 id="linux校对服务器时间"><a href="#linux校对服务器时间" class="headerlink" title="linux校对服务器时间"></a>linux校对服务器时间</h2><blockquote>
-<ol>
-<li>第一步安装NTP校时包：yum install ntp</li>
-<li>第二步校时命令：ntpdate cn.pool.ntp.org</li>
 </ol>
 </blockquote>
 
