@@ -529,7 +529,10 @@ WantedBy=default.target</code></pre>
 </li>
 </ol>
 </blockquote>
-<h2 id="linux版本-nginx"><a href="#linux版本-nginx" class="headerlink" title="linux版本 nginx"></a>linux版本 nginx</h2><h3 id="1-安装ssl模块"><a href="#1-安装ssl模块" class="headerlink" title="1. 安装ssl模块"></a>1. 安装ssl模块</h3><blockquote>
+<h2 id="linux版本-nginx"><a href="#linux版本-nginx" class="headerlink" title="linux版本 nginx"></a>linux版本 nginx</h2><h3 id="1-安装nginx"><a href="#1-安装nginx" class="headerlink" title="1.安装nginx"></a>1.安装nginx</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/pxstar/p/14808244.html">https://www.cnblogs.com/pxstar/p/14808244.html</a></p>
+</blockquote>
+<h3 id="2-安装ssl模块"><a href="#2-安装ssl模块" class="headerlink" title="2. 安装ssl模块"></a>2. 安装ssl模块</h3><blockquote>
 <ol>
 <li>./configure –prefix=/usr/local/nginx –with-http_stub_status_module –with-http_ssl_module</li>
 <li>make</li>
@@ -557,6 +560,19 @@ WantedBy=default.target</code></pre>
 <li>定时同步服务器时间  crontab -e  </li>
 <li>30 21 * * * /sbin/ntpdate cn.pool.ntp.org   #每晚的21:30同步一次时间</li>
 </ol>
+</blockquote>
+<h2 id="Centos7开放及查看端口"><a href="#Centos7开放及查看端口" class="headerlink" title="Centos7开放及查看端口"></a>Centos7开放及查看端口</h2><h3 id="1-开放端口"><a href="#1-开放端口" class="headerlink" title="1. 开放端口"></a>1. 开放端口</h3><blockquote>
+<p><strong>firewall-cmd –zone=public –add-port=5672/tcp –permanent</strong>  # 开放5672端口</p>
+<p><strong>firewall-cmd –zone=public –remove-port=5672/tcp –permanent</strong> #关闭5672端口</p>
+<p><strong>firewall-cmd –reload</strong>  # 配置立即生效</p>
+</blockquote>
+<h3 id="2-查看防火墙所有开放的端口"><a href="#2-查看防火墙所有开放的端口" class="headerlink" title="2. 查看防火墙所有开放的端口"></a>2. 查看防火墙所有开放的端口</h3><blockquote>
+<p>firewall-cmd –zone=public –list-ports</p>
+</blockquote>
+<h3 id="3-打开、关闭防火墙"><a href="#3-打开、关闭防火墙" class="headerlink" title="3. 打开、关闭防火墙"></a>3. 打开、关闭防火墙</h3><blockquote>
+<p>启动： systemctl start firewalld</p>
+<p>关闭： systemctl stop firewalld</p>
+<p>查看状态： systemctl status firewalld</p>
 </blockquote>
 
                 
