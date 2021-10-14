@@ -480,8 +480,15 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h3><h4 id="搜索镜像"><a href="#搜索镜像" class="headerlink" title="搜索镜像"></a>搜索镜像</h4><blockquote>
-<p>docker search xxx</p>
+                <h3 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h3><h4 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h4><blockquote>
+<ol>
+<li>yum -y install docker</li>
+<li>docker开机自动启动：systemctl enable docker</li>
+<li>启动docker服务： systemctl start docker</li>
+<li>停止docker服务： systemctl stop docker</li>
+<li>重启docker服务：systemctl restart docker</li>
+<li>查看docker服务状态：systemctl status docker</li>
+</ol>
 </blockquote>
 <h4 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h4><blockquote>
 <p>docker pull xxx</p>
@@ -511,6 +518,9 @@ docker run -d --name &quot;jt_mysql&quot; -p 3308:3306  -e MYSQL_ROOT_PASSWORD&#
 <h4 id="列举所有容器"><a href="#列举所有容器" class="headerlink" title="列举所有容器"></a>列举所有容器</h4><blockquote>
 <p>docker ps -a</p>
 </blockquote>
+<h4 id="进入后台运行的容器"><a href="#进入后台运行的容器" class="headerlink" title="进入后台运行的容器"></a>进入后台运行的容器</h4><blockquote>
+<p>docker exec -it apache /bin/bash</p>
+</blockquote>
 <h4 id="检查容器内部信息"><a href="#检查容器内部信息" class="headerlink" title="检查容器内部信息"></a>检查容器内部信息</h4><blockquote>
 <p>docker inspect 容器名称</p>
 </blockquote>
@@ -529,16 +539,7 @@ docker run -d --name &quot;jt_mysql&quot; -p 3308:3306  -e MYSQL_ROOT_PASSWORD&#
 <h4 id="查看容器日志"><a href="#查看容器日志" class="headerlink" title="查看容器日志"></a>查看容器日志</h4><blockquote>
 <p>docker logs 容器ID</p>
 </blockquote>
-<h4 id="重启docker服务"><a href="#重启docker服务" class="headerlink" title="重启docker服务"></a>重启docker服务</h4><blockquote>
-<p>systemctl restart docker</p>
-</blockquote>
-<h4 id="关闭docker服务"><a href="#关闭docker服务" class="headerlink" title="关闭docker服务"></a>关闭docker服务</h4><blockquote>
-<p>systemctl stop docker</p>
-</blockquote>
-<h4 id="启动docker服务"><a href="#启动docker服务" class="headerlink" title="启动docker服务"></a>启动docker服务</h4><blockquote>
-<p>systemctl start docker</p>
-</blockquote>
-<h3 id="docker-compose命令"><a href="#docker-compose命令" class="headerlink" title="docker-compose命令"></a>docker-compose命令</h3><h4 id="一键安装基础软件"><a href="#一键安装基础软件" class="headerlink" title="一键安装基础软件"></a>一键安装基础软件</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3'</span>
+<h3 id="docker-compose命令"><a href="#docker-compose命令" class="headerlink" title="docker-compose命令"></a>docker-compose命令</h3><h4 id="一键安装基础软件"><a href="#一键安装基础软件" class="headerlink" title="一键安装基础软件"></a>一键安装基础软件</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'2'</span>
 
 <span class="token key atrule">services</span><span class="token punctuation">:</span>
   <span class="token key atrule">mysql</span><span class="token punctuation">:</span>
