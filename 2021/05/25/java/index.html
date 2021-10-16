@@ -554,13 +554,33 @@
         <span class="token generics"><span class="token punctuation">&lt;</span>customFields<span class="token punctuation">></span></span><span class="token punctuation">&#123;</span><span class="token string">"appname"</span><span class="token operator">:</span><span class="token string">"parking-app-server"</span><span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>customFields<span class="token operator">></span>
     <span class="token operator">&lt;</span><span class="token operator">/</span>encoder<span class="token operator">></span>
 <span class="token operator">&lt;</span><span class="token operator">/</span>appender<span class="token operator">></span>
-               
+                  
  <span class="token operator">&lt;</span>root level<span class="token operator">=</span><span class="token string">"ERROR"</span><span class="token operator">></span>
         <span class="token operator">&lt;</span>appender<span class="token operator">-</span>ref ref<span class="token operator">=</span><span class="token string">"logstash"</span><span class="token operator">/</span><span class="token operator">></span>
     <span class="token operator">&lt;</span><span class="token operator">/</span>root<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ol>
 </blockquote>
+<h2 id="Springboot方法调用链路追踪和运行时长统计工具koTime"><a href="#Springboot方法调用链路追踪和运行时长统计工具koTime" class="headerlink" title="Springboot方法调用链路追踪和运行时长统计工具koTime"></a>Springboot方法调用链路追踪和运行时长统计工具koTime</h2><h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><blockquote>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">></span></span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">></span></span>cn<span class="token punctuation">.</span>langpy<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">></span></span>ko<span class="token operator">-</span>time<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">></span></span><span class="token number">2.0</span><span class="token number">.4</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+</blockquote>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>在<code>application.properties</code>文件中进行配置</p>
+<ul>
+<li>必填配置</li>
+</ul>
+<blockquote>
+<p>ko-time.pointcut=<code>execution(public * com.huoyo..*.*(..))</code> # 需要监测的切面范围，参考aop的@pointcut 或者左侧常见问题</p>
+</blockquote>
+<h3 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h3><ul>
+<li>启动项目访问 <code>/koTime</code> 路径即可</li>
+<li>如果仅仅只是想统计某个方法，在方法上加上<code>@ComputeTime</code>即可，控制台会输出耗时</li>
+</ul>
 <h2 id="Spring框架"><a href="#Spring框架" class="headerlink" title="Spring框架"></a>Spring框架</h2><h3 id="spring原理"><a href="#spring原理" class="headerlink" title="spring原理"></a>spring原理</h3><blockquote>
 <p><a target="_blank" rel="noopener" href="https://oipunk.github.io/2020/08/24/Spring%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/">https://oipunk.github.io/2020/08/24/Spring%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/</a></p>
 </blockquote>
