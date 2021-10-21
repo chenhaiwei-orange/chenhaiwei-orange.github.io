@@ -567,8 +567,6 @@ start nginx
 3. 定时同步服务器时间  crontab -e  
 4. 30 21 * * * &#x2F;sbin&#x2F;ntpdate cn.pool.ntp.org   #每晚的21:30同步一次时间
 
-
-
 ## Centos7开放及查看端口
 
 ### 1. 开放端口
@@ -578,19 +576,20 @@ firewall-cmd --zone&#x3D;public --add-port&#x3D;5672&#x2F;tcp --permanent  # 开
 
 firewall-cmd --zone&#x3D;public --remove-port&#x3D;5672&#x2F;tcp --permanent #关闭5672端口
 
-firewall-cmd --reload  # 配置立即生效<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></code></pre>
+firewall-cmd --reload  # 配置立即生效<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></code></pre>
 </li>
 </ol>
 </blockquote>
 <h3 id="2-查看防火墙所有开放的端口"><a href="#2-查看防火墙所有开放的端口" class="headerlink" title="2. 查看防火墙所有开放的端口"></a>2. 查看防火墙所有开放的端口</h3><blockquote>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">firewall-cmd --zone&#x3D;public --list-ports<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
 </blockquote>
 <h3 id="3-打开、关闭防火墙"><a href="#3-打开、关闭防火墙" class="headerlink" title="3. 打开、关闭防火墙"></a>3. 打开、关闭防火墙</h3><blockquote>
 <p>启动： systemctl start firewalld</p>
 <p>关闭： systemctl stop firewalld</p>
 <p>查看状态： systemctl status firewalld</p>
+</blockquote>
+<h2 id="Linux删除fastdfs-9个月以前文件"><a href="#Linux删除fastdfs-9个月以前文件" class="headerlink" title="Linux删除fastdfs 9个月以前文件"></a>Linux删除fastdfs 9个月以前文件</h2><blockquote>
+<p>find /root/data/fastdfs/storage/data -name “*.jpg” -mtime +270 -exec rm -rf {} ; </p>
 </blockquote>
 
                 
