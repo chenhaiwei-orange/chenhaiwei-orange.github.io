@@ -585,7 +585,8 @@ docker run -d --name &quot;jt_mysql&quot; -p 3308:3306  -e MYSQL_ROOT_PASSWORD&#
 
 
   <span class="token key atrule">minio</span><span class="token punctuation">:</span>
-    <span class="token key atrule">image</span><span class="token punctuation">:</span> minio/minio<span class="token punctuation">:</span>RELEASE.2021<span class="token punctuation">-</span>06<span class="token punctuation">-</span>17T00<span class="token punctuation">-</span>10<span class="token punctuation">-</span>46Z
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> minio/minio<span class="token punctuation">:</span>RELEASE.2021<span class="token punctuation">-</span>04<span class="token punctuation">-</span>22T15<span class="token punctuation">-</span>44<span class="token punctuation">-</span>28Z
+   <span class="token comment">#image: minio/minio:RELEASE.2021-06-17T00-10-46Z</span>
     <span class="token key atrule">container_name</span><span class="token punctuation">:</span> tj_minio
     <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
     <span class="token key atrule">privileged</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
@@ -597,7 +598,7 @@ docker run -d --name &quot;jt_mysql&quot; -p 3308:3306  -e MYSQL_ROOT_PASSWORD&#
       <span class="token punctuation">-</span> MINIO_SECRET_KEY=jianda123
     <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> /data/tj_minio/data<span class="token punctuation">:</span>/data
-      <span class="token punctuation">-</span> /data/tj_minio/config<span class="token punctuation">:</span>/root/.minio<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+      <span class="token punctuation">-</span> /data/tj_minio/config<span class="token punctuation">:</span>/root/.minio<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
